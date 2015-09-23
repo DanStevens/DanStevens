@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Version: 1.3; Author: Dan Stevens <dan.stevens@oracle.com> -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <title>Oracle Service Cloud Site Links</title>
+  <style type="text/css" media="all">
+    body {
+      font: 10pt arial, helvetica, sans-serif;
+    }
+    #inputForm {
+      margin-bottom: 20px;
+    }
+    #inputForm input
+    {
+      width: 180px;
+    }
+    #inputForm p {
+      float: left;
+      margin-right: 20px;
+    }
+    .outputTable {
+      width: 100%;
+    }
+    .outputTable input {
+      width: 100%;
+    }
+    .outputTable tr td:first-child { 
+      width: 300px;
+    }
+    
+    /* Clearfix */
+    .cf:before,
+    .cf:after {
+        content: " ";
+        display: table;
+    }
+    .cf:after {
+        clear: both;
+    }
+    /* For IE 6/7 only */
+    .cf {
+        zoom: 1;
+    }
+      .auto-style1
+      {
+          height: 26px;
+      }
+  </style>
+  <script type="text/javascript">
+    //<![CDATA[
+    
+    // Cross-browser trim support
+    if(!String.prototype.trim) {
+      String.prototype.trim = function () {
+        return this.replace(/^\s+|\s+$/g,'');
+      };
+    }
+    
+    // Globals
+    var p = 'https://';
+    var siteNameInput;
+    var intfNameInput;
+    var virtualHostInput;
+    var baseUriOutput;
+    var baseUriAnchor;
+    var cpRootAnchor;
+    var cpRootOutput;
+    var cpHomeAnchor;
+    var cpHomeOutput;
+    var cpAdminAnchor;
+    var cpAdminOutput;
+    var launchPageOutput;
+    var launchPageAnchor;
+    var scriptsRootOutput;
+    var scriptsRootAnchor;
+    var accessOutput;
+    var accessAnchor;
+    var connectApiOutput;
+    var connectApiAnchor;
+    var kfApiOutput;
+    var kfApiAnchor;
+    
+    function domLoad() {
+    
+      // Resource URLs
+      siteNameInput = document.getElementById('siteNameInput');
+      intfNameInput = document.getElementById('intfNameInput');
+      virtualHostInput = document.getElementById('virtualHostInput');
+      baseUriOutput = document.getElementById('baseUriOutput');
+      baseUriAnchor = document.getElementById('baseUriAnchor');
+      cpRootOutput = document.getElementById('cpRootOutput');
+      cpRootAnchor = document.getElementById('cpRootAnchor');
+      cpHomeOutput = document.getElementById('cpHomeOutput');
+      cpHomeAnchor = document.getElementById('cpHomeAnchor');
+      cpAdminOutput = document.getElementById('cpAdminOutput');
+      cpAdminAnchor = document.getElementById('cpAdminAnchor');
+      launchPageOutput = document.getElementById('launchPageOutput');
+	  launchPageAnchor = document.getElementById('launchPageAnchor');
+	  installerOutput = document.getElementById('installerOutput');
+	  installerAnchor = document.getElementById('installerAnchor');
+      scriptsRootOutput = document.getElementById('scriptsRootOutput');
+      scriptsRootAnchor = document.getElementById('scriptsRootAnchor');
+      accessOutput = document.getElementById('accessOutput');
+      accessAnchor = document.getElementById('accessAnchor');
+      connectApiOutput = document.getElementById('connectApiOutput');
+      connectApiAnchor = document.getElementById('connectApiAnchor');
+      connectApi1_2Output = document.getElementById('connectApi1_2Output');
+      connectApi1_2Anchor = document.getElementById('connectApi1_2Anchor');
+      kfApiOutput = document.getElementById('kfApiOutput');
+      kfApiAnchor = document.getElementById('kfApiAnchor');
+      
+      // Other Resources
+      launchArgsOutput = document.getElementById('launchArgsOutput');
+      
+      updateLinks();
+      
+      siteNameInput.select();
+      siteNameInput.focus();
+    }
+    
+    function updateLinks() {
+      var siteName = siteNameInput.value.trim();
+      var suffix = /__.+$/.exec(siteName);
+      suffix = suffix === null ? '' : suffix[0];
+      var suffixDashed = suffix.replace(/_/g, '-');
+      var intfName = intfNameInput.value.trim();
+      var intfNameDashed = intfName.replace(/_/g, '-');
+      var virtualHost = virtualHostInput.value.trim();
+	  var hostName = virtualHost || intfNameDashed + suffixDashed + '.custhelp.com';
+      var baseUri = p + hostName + '/';
+      var cpRoot = baseUri + 'app/';
+      var cfg = baseUri + 'cgi-bin/' + intfName +'.cfg'
+      var launchPage = cfg + '/php/admin/launch.php';
+	  var installer = p + 'installer-' + hostName + '/RightNow.Installer.application?launch=' + cfg + '&dbname=' + siteName + '&trace=true&lang=en_GB';
+      
+      // Resources URLs
+      baseUriAnchor.href = baseUriOutput.value = baseUri;
+      cpRootAnchor.href = cpRootOutput.value = cpRoot;
+      cpHomeAnchor.href = cpHomeOutput.value = cpRoot + 'home';
+      cpAdminAnchor.href = cpAdminOutput.value = baseUri + 'ci/admin';
+      launchPageAnchor.href = launchPageOutput.value = launchPage;
+	  installerAnchor.href = installerOutput.value = installer;
+      scriptsRootAnchor.href = scriptsRootOutput.value = cfg + '/php/custom/';
+      accessAnchor.href = accessOutput.value = cfg + '/php/admin/session/login.php';
+      connectApiAnchor.href = connectApiOutput.value = cfg + '/services/soap?wsdl=typed';
+      connectApi1_2Anchor.href = connectApi1_2Output.value = cfg + '/services/soap?wsdl=typed_v1.2';
+      kfApiAnchor.href = kfApiOutput.value = cfg + '/services/kf_soap?wsdl';
+      
+      // Other Resources
+      launchArgsOutput.value = 'launch=' + cfg + ' dbname=' + siteName + ' isNetworkDeployed=true';
+    }
+  //]]>
+  </script>
+</head>
+
+<body onload="domLoad()">
+
+<h1>Oracle Service Cloud Site Links</h1>
+
+<p>Complete the form below and a list of resource links for the given site/interface will be shown beneath. Use underscores rather then dashes in the site name and interface name.</p>
+
+<div id="inputForm" class="cf">
+  <p>
+    Site name (including suffix):<br/>
+    <input type="text" id="siteNameInput" value="example__pro" onkeyup="updateLinks()" />
+  </p>
+  <p>
+    Interface name:<br/>
+    <input type="text" id="intfNameInput" value="example_en" onkeyup="updateLinks()" />
+  </p>
+  <p>
+    Virtual Hostname (blank for none):<br/>
+    <input type="text" id="virtualHostInput" onkeyup="updateLinks()" value=""/>
+  </p>
+</div>
+
+<h2>Resource URLs</h2>
+
+<table id="resourceUrlsTable" class="outputTable">
+  <tbody>
+    <tr>
+      <td><a id="baseUriAnchor" href="#" target="_blank">Base URI</a></td>
+      <td><input type="text" id="baseUriOutput" onfocus="this.select();" /></td>
+    </tr>
+    <tr>
+      <td><a id="cpRootAnchor" href="#" target="_blank">Customer Portal root</a></td>
+      <td><input type="text" id="cpRootOutput" onfocus="this.select();" /></td>
+    </tr>
+    <tr>
+      <td><a id="cpHomeAnchor" href="#" target="_blank">Customer Portal home page</a></td>
+      <td><input type="text" id="cpHomeOutput" onfocus="this.select();" /></td>
+    </tr>
+    <tr>
+      <td class="auto-style1"><a id="cpAdminAnchor" href="#" target="_blank">Customer Portal administration</a></td>
+      <td class="auto-style1"><input type="text" id="cpAdminOutput" onfocus="this.select();" /></td>
+    </tr>
+    <tr>
+      <td><a id="launchPageAnchor" href="#" target="_blank">Launch page</a></td>
+      <td><input type="text" id="launchPageOutput" onfocus="this.select();" /></td>
+    </tr>
+	<tr>
+      <td><a id="installerAnchor" href="#" target="_blank">ClickOnce Installer</a></td>
+      <td><input type="text" id="installerOutput" onfocus="this.select();" /></td>
+    </tr>
+    <tr>
+      <td><a id="accessAnchor" href="#" target="_blank">Accessibility interface</a></td>
+      <td><input type="text" id="accessOutput" onfocus="this.select();" /></td>
+    </tr>
+    <tr>
+      <td><a id="scriptsRootAnchor" href="#" target="_blank">Custom Scripts root</a></td>
+      <td><input type="text" id="scriptsRootOutput" onfocus="this.select();" /></td>
+    </tr>
+    <tr>
+      <td><a id="connectApiAnchor" href="#" target="_blank">Connect web service endpoint</a></td>
+      <td><input type="text" id="connectApiOutput" onfocus="this.select();" /></td>
+    </tr>
+    <tr>
+      <td><a id="connectApi1_2Anchor" href="#" target="_blank">Connect web service endpoint (version 1.2)</a></td>
+      <td><input type="text" id="connectApi1_2Output" onfocus="this.select();" /></td>
+    </tr>
+    <tr>
+      <td><a id="kfApiAnchor" href="#" target="_blank">Knowledge Foundation web service endpoint</a></td>
+      <td><input type="text" id="kfApiOutput" onfocus="this.select();" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Other Resources</h2>
+
+<table id="otherResourcesTable" class="outputTable">
+  <tbody>
+    <tr>
+      <td>Launch command line arguments</td>
+      <td><input type="text" id="launchArgsOutput" onfocus="this.select();" /></td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+
+</html>
