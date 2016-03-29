@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Version: 1.4; Author: Dan Stevens <dan.stevens@oracle.com> -->
+<!-- Version: 1.5; Author: Dan Stevens <dan.stevens@oracle.com> -->
 <html>
 <head>
   <title>Oracle Service Cloud Site Links</title>
@@ -76,11 +76,24 @@
     var kfApiAnchor;
     
     function domLoad() {
-    
-      // Resource URLs
+      
+      // Inputs
       siteNameInput = document.getElementById('siteNameInput');
       intfNameInput = document.getElementById('intfNameInput');
       virtualHostInput = document.getElementById('virtualHostInput');
+      
+      // Set Input values according to URL parameters, if present
+      var siteParam = getUrlParameterByName('site');
+      if (siteParam)
+        siteNameInput.value = siteParam;
+      var intfParam = getUrlParameterByName('intf');
+      if (intfParam)
+        intfNameInput.value = intfParam;
+      var hostParam = getUrlParameterByName('host'); 
+      if (hostParam)
+        virtualHostInput.value = hostParam;
+      
+      // Resource URLs
       baseUriOutput = document.getElementById('baseUriOutput');
       baseUriAnchor = document.getElementById('baseUriAnchor');
       cpRootOutput = document.getElementById('cpRootOutput');
@@ -145,6 +158,17 @@
       // Other Resources
       launchArgsOutput.value = 'launch=' + cfg + ' dbname=' + siteName + ' isNetworkDeployed=true';
     }
+    
+    function getUrlParameterByName(name, url) {
+      if (!url) url = window.location.href;
+      url = url.toLowerCase(); // This is just to avoid case sensitiveness  
+      name = name.replace(/[\[\]]/g, "\\$&").toLowerCase();// This is just to avoid case sensitiveness for query parameter name
+      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
   </script>
 </head>
 
@@ -155,7 +179,12 @@
 <p>Complete the form below and a list of resource links for the given site/interface will be shown beneath. Use underscores rather then dashes in the site name and interface name.</p>
 <p>
   <b>Tip:</b> Install the <a href="https://addons.mozilla.org/en-US/firefox/addon/fxclickonce/" target="_blank">
-  FxClickOnce</a> add-on to use the 'ClickOnce Installer' resource in Firefox.
+  FxClickOnce</a> add-on to use the <i>ClickOnce Installer</i> resource in Firefox.
+</p>
+<p>
+  <b>Tip:</b> URL query parameters <i>site</i>, <i>intf</i> and <i>host</i> can be used to set the <i>Site name</i>,
+  <i>Interface name</i> and <i>Virtual Hostname</i> input elements
+  (<a href="?site=foo__pro&intf=bar&host=foobar.example.com">example</a>).
 </p>
 
 <div id="inputForm" class="cf">
