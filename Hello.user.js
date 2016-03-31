@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Hello, World!
-// @namespace   doomy.co.uk
+// @namespace   danstevens.github.io
 // @description Sanity test user script
 // @include     http://example.com/
 // @version     1
