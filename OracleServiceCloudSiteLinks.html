@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Version: 1.5; Author: Dan Stevens <dan.stevens@oracle.com> -->
+<!-- Version: 1.6; Author: Dan Stevens <dan.stevens@oracle.com> -->
 <html>
 <head>
   <title>Oracle Service Cloud Site Links</title>
@@ -53,6 +53,7 @@
     
     // Globals
     var p = 'https://';
+    var podDomain;
     var siteNameInput;
     var intfNameInput;
     var virtualHostInput;
@@ -74,10 +75,15 @@
     var connectApiAnchor;
     var kfApiOutput;
     var kfApiAnchor;
+    var kaContentApiRootOutput;
+    var kaContentApiRootAnchor;
+    var kaSearchApiRootOutput;
+    var kaSearchApiRootAnchor;
     
     function domLoad() {
-      
+    
       // Inputs
+      podDomainSelect = document.getElementById('podDomainSelect');
       siteNameInput = document.getElementById('siteNameInput');
       intfNameInput = document.getElementById('intfNameInput');
       virtualHostInput = document.getElementById('virtualHostInput');
@@ -120,6 +126,12 @@
       // Other Resources
       launchArgsOutput = document.getElementById('launchArgsOutput');
       
+      // Knowledge Advanced REST API
+      kaContentApiRootOutput = document.getElementById('kaContentApiRootOutput');
+      kaContentApiRootAnchor = document.getElementById('kaContentApiRootAnchor');
+      kaSearchApiRootOutput = document.getElementById('kaSearchApiRootOutput');
+      kaSearchApiRootAnchor = document.getElementById('kaSearchApiRootAnchor');
+      
       updateLinks();
       
       siteNameInput.select();
@@ -127,6 +139,7 @@
     }
     
     function updateLinks() {
+      var podDomain = podDomainSelect.value;
       var siteName = siteNameInput.value.trim();
       var suffix = /__.+$/.exec(siteName);
       suffix = suffix === null ? '' : suffix[0];
@@ -134,13 +147,15 @@
       var intfName = intfNameInput.value.trim();
       var intfNameDashed = intfName.replace(/_/g, '-');
       var virtualHost = virtualHostInput.value.trim();
-      var hostName = virtualHost || intfNameDashed + suffixDashed + '.custhelp.com';
+      var hostName = virtualHost || intfNameDashed + suffixDashed + '.' + podDomain;
       var baseUri = p + hostName + '/';
       var cpRoot = baseUri + 'app/';
       var cfg = baseUri + 'cgi-bin/' + intfName +'.cfg'
       var launchPage = cfg + '/php/admin/launch.php';
-      var installer = p + 'installer-' + siteName.replace(/_/g, '-') +
-                      '.custhelp.com/RightNow.Installer.application?launch=' + cfg + '&dbname=' + siteName;
+      var installer = p + 'installer-' + hostName + '/RightNow.Installer.application?launch=' +
+                      cfg + '&dbname=' + siteName + '&trace=true&lang=en_GB';
+      var kaContentApiRoot = p + intfNameDashed + suffixDashed + '-irs' + '.' + podDomain + '/km';
+      var kaSearchApiRoot = p + intfNameDashed + suffixDashed + '-qp' + '.' + podDomain + '/srt';
       
       // Resources URLs
       baseUriAnchor.href = baseUriOutput.value = baseUri;
@@ -157,6 +172,11 @@
       
       // Other Resources
       launchArgsOutput.value = 'launch=' + cfg + ' dbname=' + siteName + ' isNetworkDeployed=true';
+      
+      // Knowledge Advanced REST API
+      kaContentApiRootAnchor.href = kaContentApiRootOutput.value = kaContentApiRoot;
+      kaSearchApiRootAnchor.href = kaSearchApiRootOutput.value = kaSearchApiRoot;
+        
     }
     
     function getUrlParameterByName(name, url) {
@@ -186,6 +206,16 @@
   <i>Interface name</i> and <i>Virtual Hostname</i> input elements
   (<a href="?site=foo__pro&intf=bar&host=foobar.example.com">example</a>).
 </p>
+
+<div id="podDomainContainer" class="cf">
+  <p>
+    Pod Domain: 
+    <select id="podDomainSelect" onchange="updateLinks()">
+      <option selected="selected">custhelp.com</option>
+      <option>rightnowdemo.com</option>
+    </select>
+  </p>
+</div>
 
 <div id="inputForm" class="cf">
   <p>
@@ -260,6 +290,23 @@
     <tr>
       <td>Launch command line arguments</td>
       <td><input type="text" id="launchArgsOutput" onfocus="this.select();" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Knowledge Advanced REST API</h2>
+
+<p>Note: Knowledge Advanced API hostnames are seperate to the Service Cloud host name and doesn't
+use Virtual Hostname.</p>
+<table id="kaapiTable" class="outputTable">
+  <tbody>
+    <tr>
+      <td><a id="kaContentApiRootAnchor" href="#" target="_blank">Content API Root URI</a></td>
+      <td><input type="text" id="kaContentApiRootOutput" onfocus="this.select();" /></td>
+    </tr>
+    <tr>
+      <td><a id="kaSearchApiRootAnchor" href="#" target="_blank">Search API Root URI</a></td>
+      <td><input type="text" id="kaSearchApiRootOutput" onfocus="this.select();" /></td>
     </tr>
   </tbody>
 </table>
