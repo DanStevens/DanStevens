@@ -152,8 +152,9 @@
       var cpRoot = baseUri + 'app/';
       var cfg = baseUri + 'cgi-bin/' + intfName +'.cfg'
       var launchPage = cfg + '/php/admin/launch.php';
-      var installer = p + 'installer-' + hostName + '/RightNow.Installer.application?launch=' +
-                      cfg + '&dbname=' + siteName + '&trace=true&lang=en_GB';
+      var installer = p + 'installer-' + siteName.replace(/_/g, '-') + '.' + podDomain +
+                      '/RightNow.Installer.application?launch=' + cfg + '&dbname=' + siteName +
+                      '&trace=true&lang=en_GB';
       var kaContentApiRoot = p + intfNameDashed + suffixDashed + '-irs' + '.' + podDomain + '/km';
       var kaSearchApiRoot = p + intfNameDashed + suffixDashed + '-qp' + '.' + podDomain + '/srt';
       
