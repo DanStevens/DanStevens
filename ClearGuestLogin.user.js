@@ -2,9 +2,10 @@
 // @name        clear-guest Login
 // @namespace   oracle.com
 // @description A user script for the clear-guest login page with improved usability, especially for mobile devices
+// @include     http://webauth-redirect.oracle.com/fs/customwebauth/login.html*
 // @include     https://webauth-redirect.oracle.com/fs/customwebauth/login.html*
 // @require     https://code.jquery.com/jquery-2.2.2.min.js
-// @version     1.0.0
+// @version     1.0.1
 // @grant       GM_addStyle
 // ==/UserScript==
 
