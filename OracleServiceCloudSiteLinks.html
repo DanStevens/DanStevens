@@ -116,6 +116,8 @@
       scriptsRootAnchor = document.getElementById('scriptsRootAnchor');
       accessOutput = document.getElementById('accessOutput');
       accessAnchor = document.getElementById('accessAnchor');
+      
+      // Legacy SOAP URLs
       connectApiOutput = document.getElementById('connectApiOutput');
       connectApiAnchor = document.getElementById('connectApiAnchor');
       connectApi1_2Output = document.getElementById('connectApi1_2Output');
@@ -234,7 +236,7 @@
   </p>
 </div>
 
-<h2>Resource URLs</h2>
+<h2>General URLs</h2>
 
 <table id="resourceUrlsTable" class="outputTable">
   <tbody>
@@ -274,6 +276,15 @@
       <td><a id="scriptsRootAnchor" href="#" target="_blank">Custom Scripts root</a></td>
       <td><input type="text" id="scriptsRootOutput" onfocus="this.select();" /></td>
     </tr>
+  </tbody>
+</table>
+
+<h2>SOAP URLs</h2>
+
+<h3>Legacy SOAP URLs</h3>
+
+<table id="legacySoapUrlsTable" class="outputTable">
+  <tbody>
     <tr>
       <td><a id="connectApiAnchor" href="#" target="_blank">Connect web service endpoint</a></td>
       <td><input type="text" id="connectApiOutput" onfocus="this.select();" /></td>
@@ -288,6 +299,8 @@
     </tr>
   </tbody>
 </table>
+
+<h3>August 2017+ SOAP URLs</h3>
 
 <h2>Other Resources</h2>
 
