@@ -124,6 +124,8 @@
       connectApi1_2Anchor = document.getElementById('connectApi1_2Anchor');
       kfApiOutput = document.getElementById('kfApiOutput');
       kfApiAnchor = document.getElementById('kfApiAnchor');
+      chatApiOutput = document.getElementById('chatApiOutput');
+      chatApiAnchor = document.getElementById('chatApiAnchor');
       
       // Other Resources
       launchArgsOutput = document.getElementById('launchArgsOutput');
@@ -170,9 +172,12 @@
       installerAnchor.href = installerOutput.value = installer;
       scriptsRootAnchor.href = scriptsRootOutput.value = cfg + '/php/custom/';
       accessAnchor.href = accessOutput.value = cfg + '/php/admin/session/login.php';
+      
+      // Legacy SOAP URLs
       connectApiAnchor.href = connectApiOutput.value = cfg + '/services/soap?wsdl=typed';
       connectApi1_2Anchor.href = connectApi1_2Output.value = cfg + '/services/soap?wsdl=typed_v1.2';
       kfApiAnchor.href = kfApiOutput.value = cfg + '/services/kf_soap?wsdl';
+      chatApiAnchor.href = chatApiOutput.value = cfg + '/services/chat_soap?wsdl';
       
       // Other Resources
       launchArgsOutput.value = 'launch=' + cfg + ' dbname=' + siteName + ' isNetworkDeployed=true';
@@ -296,6 +301,10 @@
     <tr>
       <td><a id="kfApiAnchor" href="#" target="_blank">Knowledge Foundation web service endpoint</a></td>
       <td><input type="text" id="kfApiOutput" onfocus="this.select();" /></td>
+    </tr>
+    <tr>
+      <td><a id="chatApiAnchor" href="#" target="_blank">Chat web service endpoint</a></td>
+      <td><input type="text" id="chatApiOutput" onfocus="this.select();" /></td>
     </tr>
   </tbody>
 </table>
