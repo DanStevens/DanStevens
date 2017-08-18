@@ -71,6 +71,8 @@
     var scriptsRootAnchor;
     var accessOutput;
     var accessAnchor;
+    var restApiAnchor;
+    var restApiOutput;
     var connectApiOutput;
     var connectApiAnchor;
     var kfApiOutput;
@@ -124,6 +126,8 @@
       scriptsRootAnchor = document.getElementById('scriptsRootAnchor');
       accessOutput = document.getElementById('accessOutput');
       accessAnchor = document.getElementById('accessAnchor');
+      restApiOutput = document.getElementById('restApiOutput');
+      restApiAnchor = document.getElementById('restApiAnchor');
       
       // Legacy SOAP URLs
       connectApiOutput = document.getElementById('connectApiOutput');
@@ -190,6 +194,7 @@
       installerAnchor.href = installerOutput.value = installer;
       scriptsRootAnchor.href = scriptsRootOutput.value = cfg + '/php/custom/';
       accessAnchor.href = accessOutput.value = cfg + '/php/admin/session/login.php';
+      restApiAnchor.href = restApiOutput.value = baseUri + 'services/rest/connect';
       
       // Legacy SOAP URLs
       connectApiAnchor.href = connectApiOutput.value = cfg + '/services/soap?wsdl=typed';
@@ -306,6 +311,10 @@
     <tr>
       <td><a id="scriptsRootAnchor" href="#" target="_blank">Custom Scripts root</a></td>
       <td><input type="text" id="scriptsRootOutput" onfocus="this.select();" /></td>
+    </tr>
+    <tr>
+      <td><a id="restApiAnchor" href="#" target="_blank">REST API Root</a></td>
+      <td><input type="text" id="restApiOutput" onfocus="this.select();" /></td>
     </tr>
   </tbody>
 </table>
