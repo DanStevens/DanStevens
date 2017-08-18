@@ -75,6 +75,14 @@
     var connectApiAnchor;
     var kfApiOutput;
     var kfApiAnchor;
+    var chatApiOutput;
+    var chatApiAnchor;
+    var aug17_connectApiOutput;
+    var aug17_connectApiAnchor;
+    var aug17_kfApiOutput;
+    var aug17_kfApiAnchor;
+    var aug17_chatApiOutput;
+    var aug17_chatApiAnchor;
     var kaContentApiRootOutput;
     var kaContentApiRootAnchor;
     var kaSearchApiRootOutput;
@@ -127,6 +135,16 @@
       chatApiOutput = document.getElementById('chatApiOutput');
       chatApiAnchor = document.getElementById('chatApiAnchor');
       
+      // August 2017+ SOAP URLs
+      aug17_connectApiOutput = document.getElementById('aug17_connectApiOutput');
+      aug17_connectApiAnchor = document.getElementById('aug17_connectApiAnchor');
+      aug17_connectApi1_3Output = document.getElementById('aug17_connectApi1_3Output');
+      aug17_connectApi1_3Anchor = document.getElementById('aug17_connectApi1_3Anchor');
+      aug17_kfApiOutput = document.getElementById('aug17_kfApiOutput');
+      aug17_kfApiAnchor = document.getElementById('aug17_kfApiAnchor');
+      aug17_chatApiOutput = document.getElementById('aug17_chatApiOutput');
+      aug17_chatApiAnchor = document.getElementById('aug17_chatApiAnchor');
+      
       // Other Resources
       launchArgsOutput = document.getElementById('launchArgsOutput');
       
@@ -178,6 +196,14 @@
       connectApi1_2Anchor.href = connectApi1_2Output.value = cfg + '/services/soap?wsdl=typed_v1.2';
       kfApiAnchor.href = kfApiOutput.value = cfg + '/services/kf_soap?wsdl';
       chatApiAnchor.href = chatApiOutput.value = cfg + '/services/chat_soap?wsdl';
+      
+      // August 2017+ SOAP URLs
+      aug17_connectApiAnchor.href = aug17_connectApiOutput.value =
+        baseUri + 'services/soap/connect/soap?wsdl=typed';
+      aug17_connectApi1_2Anchor.href = aug17_connectApi1_2Output.value =
+        baseUri + 'services/soap/connect/soap?wsdl=typed_v1.3';
+      aug17_kfApiAnchor.href = aug17_kfApiOutput.value = baseUri + 'services/soap/connect/kf_soap?wsdl';
+      aug17_chatApiAnchor.href = aug17_chatApiOutput.value = baseUri + 'services/soap/connect/chat_soap?wsdl';
       
       // Other Resources
       launchArgsOutput.value = 'launch=' + cfg + ' dbname=' + siteName + ' isNetworkDeployed=true';
@@ -310,6 +336,27 @@
 </table>
 
 <h3>August 2017+ SOAP URLs</h3>
+
+<table id="aug17_SoapUrlsTable" class="outputTable">
+  <tbody>
+    <tr>
+      <td><a id="aug17_connectApiAnchor" href="#" target="_blank">Connect web service endpoint</a></td>
+      <td><input type="text" id="aug17_connectApiOutput" onfocus="this.select();" /></td>
+    </tr>
+    <tr>
+      <td><a id="aug17_connectApi1_2Anchor" href="#" target="_blank">Connect web service endpoint (version 1.3)</a></td>
+      <td><input type="text" id="aug17_connectApi1_2Output" onfocus="this.select();" /></td>
+    </tr>
+    <tr>
+      <td><a id="aug17_kfApiAnchor" href="#" target="_blank">Knowledge Foundation web service endpoint</a></td>
+      <td><input type="text" id="aug17_kfApiOutput" onfocus="this.select();" /></td>
+    </tr>
+    <tr>
+      <td><a id="aug17_chatApiAnchor" href="#" target="_blank">Chat web service endpoint</a></td>
+      <td><input type="text" id="aug17_chatApiOutput" onfocus="this.select();" /></td>
+    </tr>
+  </tbody>
+</table>
 
 <h2>Other Resources</h2>
 
