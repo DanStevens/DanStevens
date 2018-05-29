@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Version: 1.6; Author: Dan Stevens <dan.stevens@oracle.com> -->
+<!-- Version: 1.7; Author: Dan Stevens <dan.stevens@oracle.com> -->
 <html>
 <head>
   <title>Oracle Service Cloud Site Links</title>
@@ -50,6 +50,11 @@
         return this.replace(/^\s+|\s+$/g,'');
       };
     }
+
+    // Escapes a string for Regular Expressions. See https://stackoverflow.com/a/6969486/660896
+    function escapeRegExp(str) {
+      return str.replace(/[\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+    }
     
     // Globals
     var p = 'https://';
@@ -85,6 +90,8 @@
     var aug17_kfApiAnchor;
     var aug17_chatApiOutput;
     var aug17_chatApiAnchor;
+    var launchArgsOutput;
+    var cpAdminUrlRegexOutput;
     var kaContentApiRootOutput;
     var kaContentApiRootAnchor;
     var kaSearchApiRootOutput;
@@ -151,6 +158,7 @@
       
       // Other Resources
       launchArgsOutput = document.getElementById('launchArgsOutput');
+      cpAdminUrlRegexOutput = document.getElementById('cpAdminUrlRegexOutput');
       
       // Knowledge Advanced REST API
       kaContentApiRootOutput = document.getElementById('kaContentApiRootOutput');
@@ -212,6 +220,9 @@
       
       // Other Resources
       launchArgsOutput.value = 'launch=' + cfg + ' dbname=' + siteName + ' isNetworkDeployed=true';
+      cpAdminUrlRegexOutput.value = "https:\\/\\/" +
+        (virtualHost ? escapeRegExp(virtualHost) : intfNameDashed + '(--[\\w-]*)?\\.' + escapeRegExp(podDomain)) +
+        '\\/ci\\/admin.*';
       
       // Knowledge Advanced REST API
       kaContentApiRootAnchor.href = kaContentApiRootOutput.value = kaContentApiRoot;
@@ -374,6 +385,10 @@
     <tr>
       <td>Launch command line arguments</td>
       <td><input type="text" id="launchArgsOutput" onfocus="this.select();" /></td>
+    </tr>
+    <tr>
+      <td>Regex for matching CP Admin URLs</td>
+      <td><input type="text" id="cpAdminUrlRegexOutput" onfocus="this.select();" /></td>
     </tr>
   </tbody>
 </table>
