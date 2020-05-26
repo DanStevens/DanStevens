@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Unity WebGL Player | Pilfering Pigeon (Alpha)</title>
+  <link rel="shortcut icon" href="TemplateData/favicon.ico">
+  <link rel="stylesheet" href="TemplateData/style.css">
+  <script src="TemplateData/UnityProgress.js"></script>
+  <script src="Build/UnityLoader.js"></script>
+  <script>
+    var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Build.json", { onProgress: UnityProgress });
+  </script>
+  <style>
+    body {
+      font-family: Helvetica, Verdana, Arial, sans-serif;
+      font-size: 18px;
+      text-align: center;
+    }
+    .header h1, .header p {
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="webgl-content">
+    <div class="header">
+      <h1>Pilfering Pigeon (Alpha)</h1>
+      <p><a href="https://github.com/DanStevens/Pilfering-Pigeon">Day 12</a>
+        of 100 Days of Coding Challenge to create a game in <a href="https://unity.com">Unity</a></p>
+      <p>Tap Space or Up key to jump up and hold Down key to dive. Collect all the 🍓 without missing one and get a high score!</p>
+    </div>
+    <div id="unityContainer" style="width: 960px; height: 600px"></div>
+    <div class="footer">
+      <div class="webgl-logo"></div>
+      <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
+      <div class="title"><a href="https://github.com/DanStevens/Pilfering-Pigeon">Created by Dan Stevens</a>.
+        <a href="https://github.com/DanStevens/Pilfering-Pigeon#attributions">Attributions</a></div>
+      <div class="credit"></div>
+    </div>
+  </div>
+</body>
+
+</html>
