@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta property="og:title" content="Pilfering Pigeon">
+  <meta property="og:description" content="A 2D WebGL game created in Unity">
+  <meta property="og:image" content="https://danstevens.github.io/Pilfering-Pigeon/Day-012/icon.png">
+  <meta property="og:url" content="https://danstevens.github.io/Pilfering-Pigeon/index.html">
+  <title>Unity WebGL Player | Pilfering Pigeon</title>
+  <link rel="shortcut icon" href="Day-012/TemplateData/favicon.ico">
+  <link rel="stylesheet" href="Day-012/TemplateData/style.css">
+  <script src="Day-012/TemplateData/UnityProgress.js"></script>
+  <script src="Day-012/Build/UnityLoader.js"></script>
+  <script>
+    var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Build.json", { onProgress: UnityProgress });
+  </script>
+  <style>
+    body {
+      font-family: Helvetica, Verdana, Arial, sans-serif;
+      font-size: 18px;
+      text-align: center;
+    }
+    .header h1, .header p {
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="webgl-content">
+    <div class="header">
+      <h1>Pilfering Pigeon</h1>
+      <p>A 'flappy-bird' like side scrolling 2D game featuring a flying pigeon stealing food. Created in Unity through their
+        (<a href="https://learn.unity.com/course/create-with-code-live">Create with Code Live</a>) course.</p>
+      <p>Tap Space or Up key to jump up and hold Down key to dive. Collect all the 🍓 without missing one and get a high score!</p>
+    </div>
+    <div id="unityContainer" style="width: 960px; height: 600px"></div>
+    <div class="footer">
+      <div class="webgl-logo"></div>
+      <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
+      <div class="title"><a href="https://github.com/DanStevens/Pilfering-Pigeon">Created by Dan Stevens</a>.
+        <a href="https://github.com/DanStevens/Pilfering-Pigeon#attributions">Attributions</a></div>
+      <div class="credit"></div>
+    </div>
+  </div>
+</body>
+
+</html>
